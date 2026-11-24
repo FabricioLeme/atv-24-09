@@ -1,0 +1,190 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 24px;
+    background-color: #f4f7fa;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Seletor de elemento: configuração base das divs da atividade. */
+div {
+    display: inline-block;
+    border: 1px solid black;
+    width: 200px;
+    height: 200px;
+}
+
+/* Seletor de ID: organiza as três colunas do painel. */
+#painel {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 604px;
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #182735;
+    color: white;
+}
+
+#cabecalho {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    align-items: center;
+    gap: 16px;
+    height: 80px;
+    padding: 10px 16px;
+    background-color: #05295e;
+}
+
+/* Seletor de filho: cada bloco ocupa a largura da sua coluna. */
+#painel > div {
+    width: 100%;
+    min-width: 0;
+}
+
+/* Seletores descendentes: título e localização no cabeçalho. */
+.cabecalho h1 {
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.15;
+    text-transform: uppercase;
+}
+
+.cabecalho p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: right;
+}
+
+.hoje {
+    display: block;
+}
+
+/* Seletor de classe: tamanho e alinhamento comuns aos seis cards. */
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    height: 128px;
+    padding: 10px;
+    text-align: center;
+    transition: transform 180ms ease, box-shadow 180ms ease,
+        background-color 180ms ease;
+}
+
+.card span {
+    font-size: 14px;
+}
+
+.card strong {
+    font-size: 20px;
+    line-height: 1.15;
+}
+
+.icone,
+.card .icone {
+    display: block;
+    font-family: "Segoe UI Symbol", "Arial Unicode MS", sans-serif;
+    font-size: 44px;
+    font-weight: normal;
+    line-height: 1;
+}
+
+.cabecalho .sol {
+    font-size: 60px;
+    text-align: center;
+}
+
+.temperatura {
+    background-color: #0084ff;
+}
+
+.umidade {
+    background-color: #249b32;
+}
+
+.vento {
+    background-color: #7733cf;
+}
+
+.condicao {
+    background-color: #ff8a00;
+}
+
+.amanha {
+    background-color: #00afb0;
+}
+
+.localizacao {
+    background-color: #f52d7b;
+}
+
+/* Seletor estrutural: o 4º card é o 5º filho, após o cabeçalho. */
+#painel > div:nth-child(5) {
+    border-width: 3px;
+}
+
+/* Pseudo-classe: destaca qualquer card ao passar o mouse. */
+.card:hover {
+    position: relative;
+    z-index: 1;
+    transform: scale(1.04);
+    box-shadow: 0 6px 16px rgb(0 0 0 / 25%);
+}
+
+/* O 3º card (Vento) recebe também um fundo mais claro no hover. */
+#painel > div:nth-child(4):hover {
+    background-color: #9856ed;
+}
+
+@media (max-width: 560px) {
+    body {
+        padding: 10px;
+    }
+
+    #cabecalho {
+        grid-template-columns: 40px 1fr auto;
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .cabecalho .sol {
+        font-size: 40px;
+    }
+
+    .cabecalho h1 {
+        font-size: clamp(14px, 3.4vw, 20px);
+    }
+
+    .cabecalho p {
+        font-size: 11px;
+    }
+
+    .card {
+        padding: 6px;
+    }
+
+    .card span {
+        font-size: 12px;
+    }
+
+    .card strong {
+        font-size: 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card {
+        transition: none;
+    }
+
+    .card:hover {
+        transform: none;
+    }
+}
